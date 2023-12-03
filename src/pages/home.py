@@ -15,7 +15,7 @@ add_page_title() # By default this also adds indentation
 show_pages(
     [
         Page("src/pages/home.py", "About", "🏠"),
-        Page("src/pages/asr.py", "Speech Recognition", "🗣️"),
+        Page("src/pages/speech_recognition.py", "Speech Recognition", "🗣️"),
         Page("src/pages/translatation.py", "Translation", "🌐"),
     ]
 )
@@ -29,7 +29,7 @@ st.markdown(
 
     Sur ce site, vous trouverez toutes les démos des technologies qui ont été dévevoppée pour la langue peul. Nous vous invitons à les tester et nous faire vos retours.
 
-    Cawoylel aspirant à être une initiative participative, toute personne concernée peut rejoindre le mouvement, indépendamment de ses compétences : que vous soyez un simple locuteur de la langue, un ingénieur, un linguiste, un sociologue, ou autre.    
+    Cawoylel aspire à être une initiative participative. De ce fait, toute personne concernée peut rejoindre le mouvement, indépendamment de ses compétences : que vous soyez un simple locuteur de la langue, un ingénieur, un linguiste, un sociologue, ou autre.    
 """
 )
 
