@@ -1,5 +1,5 @@
 # windanam-streamlit
-In this repo, you'll find demos of all the technologies that have been developed for the Fula language by cawoylel. We invite you to try them out and provide us your feedback.
+In this repo, you'll find demos of all the technologies that have been developed for the Fula language by Cawoylel. We invite you to try them out and provide us your feedbacks.
 
 These tools will include: 
 - Multidialectal Translation systems
