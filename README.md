@@ -1,6 +1,9 @@
 # windanam-streamlit
-Streamlit app of Windanam ASR model
+In this repo, you'll find demos of all the technologies that have been developed for the Fula language by cawoylel. We invite you to try them out and provide us your feedback.
 
+These tools will include: 
+- Multidialectal Translation systems
+- Multidialectal Speech recognition solutions
 # Installations instructions
 
 1. Clone the repository locally:
