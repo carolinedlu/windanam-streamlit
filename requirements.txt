@@ -1,3 +1,4 @@
 streamlit
 st-pages 
 streamlit-extras
+streamlit-audiorec
