@@ -12,7 +12,7 @@ from transformers import (
 import datasets
 from datasets import load_dataset
 import torch
-
+from transformers import pipeline
 
 add_page_title() 
 
@@ -31,6 +31,14 @@ def load_model(model_name = "cawoylel/windanam_mms-1b-tts_v2"):
   processor = AutoProcessor.from_pretrained(model_name)
   model = AutoModelForCTC.from_pretrained(model_name)
   return model, processor
+
+@st.cache_resource
+def load_model(model_name = "cawoylel/windanam_mms-1b-tts_v2"):
+  """
+  Function to load model from hugging face
+  """
+  pipe = pipeline("automatic-speech-recognition", model=model_name)
+  return pipe
 
 model, processor = load_model()
 
