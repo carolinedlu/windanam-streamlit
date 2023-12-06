@@ -29,8 +29,10 @@ def load_model(model_name = "cawoylel/windanam_mms-1b-tts_v2"):
   Function to load model from hugging face
   """
   processor = AutoProcessor.from_pretrained(model_name)
-  model = AutoModelForCTC.from_pretrained(model_name, cache_dir="./")
+  model = AutoModelForCTC.from_pretrained(model_name)
   return model, processor
+
+model, processor = load_model()
 
 # import asr function from pages/models
 st.cache_data()
@@ -38,7 +40,6 @@ def transcribe_audio(sample):
   """
   Transcribe audio
   """
-  model, processor = load_model()
   inputs = processor(sample, sampling_rate=16_000, return_tensors="pt")
 
   with torch.no_grad():
