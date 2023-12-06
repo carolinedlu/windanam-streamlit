@@ -22,7 +22,6 @@ st.markdown(
     We encourage you test it and provides us some feedbacks on the model outputs
 """
 )
-#https://drive.google.com/drive/folders/1bkxELyDOA98Ok5uZP3Q0yBoMFE4jy0q5?usp=share_link
 
 @st.cache_resource
 def load_model(model_name = "cawoylel/windanam_mms-1b-tts_v2"):
