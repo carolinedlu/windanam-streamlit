@@ -121,6 +121,7 @@ celerybeat.pid
 
 # Environments
 src/creds
+.src/creds/
 .env
 .venv
 env/
