@@ -22,7 +22,6 @@ st.markdown(
     We encourage you test it and provides us some feedbacks on the model outputs
 """
 )
-#https://drive.google.com/drive/folders/1bkxELyDOA98Ok5uZP3Q0yBoMFE4jy0q5?usp=share_link
 
 @st.cache_resource
 def load_model(model_name = "cawoylel/windanam_mms-1b-tts_v2"):
@@ -56,17 +55,18 @@ def main():
     wav_audio_data = st_audiorec()
     if wav_audio_data is not None:
         if button("Transcribe recording", key="transcribe"):
-            transcription = transcribe_audio(wav_audio_data)
-            with st.spinner("Model is loading"):
-                st.text_area(label = "Model Output", 
-                             value=transcription, height =100)
+           st.write("ok")
+            # transcription = transcribe_audio(wav_audio_data)
+            # with st.spinner("Model is loading"):
+            #     st.text_area(label = "Model Output", 
+            #                  value=transcription, height =100)
                 
-            with st.container():
-                st.info("As you can see, the results are not yet perfect. In order to improve the model, would you allow us to use your recordings?", icon="ℹ️")
-                if button("Allow my recordings to be used", key="saved"):
-                    upload_to_drive(wav_audio_data)
-                    #Display a message indicating successful upload
-                    st.success(f"Your recording has been uploaded to Google Drive")
+            # with st.container():
+            #     st.info("As you can see, the results are not yet perfect. In order to improve the model, would you allow us to use your recordings?", icon="ℹ️")
+            #     if button("Allow my recordings to be used", key="saved"):
+            #         upload_to_drive(wav_audio_data)
+            #         #Display a message indicating successful upload
+            #         st.success(f"Your recording has been uploaded to Google Drive")
 
                 
     else:
