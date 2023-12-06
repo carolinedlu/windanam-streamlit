@@ -55,18 +55,17 @@ def main():
     wav_audio_data = st_audiorec()
     if wav_audio_data is not None:
         if button("Transcribe recording", key="transcribe"):
-           st.write("ok")
-            # transcription = transcribe_audio(wav_audio_data)
-            # with st.spinner("Model is loading"):
-            #     st.text_area(label = "Model Output", 
-            #                  value=transcription, height =100)
+            transcription = transcribe_audio(wav_audio_data)
+            with st.spinner("Model is loading"):
+                st.text_area(label = "Model Output", 
+                             value=transcription, height =100)
                 
-            # with st.container():
-            #     st.info("As you can see, the results are not yet perfect. In order to improve the model, would you allow us to use your recordings?", icon="ℹ️")
-            #     if button("Allow my recordings to be used", key="saved"):
-            #         upload_to_drive(wav_audio_data)
-            #         #Display a message indicating successful upload
-            #         st.success(f"Your recording has been uploaded to Google Drive")
+            with st.container():
+                st.info("As you can see, the results are not yet perfect. In order to improve the model, would you allow us to use your recordings?", icon="ℹ️")
+                if button("Allow my recordings to be used", key="saved"):
+                    upload_to_drive(wav_audio_data)
+                    #Display a message indicating successful upload
+                    st.success(f"Your recording has been uploaded to Google Drive")
 
                 
     else:
