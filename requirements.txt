@@ -7,3 +7,7 @@ google-auth
 google-auth-oauthlib 
 google-auth-httplib2 
 oauth2client
+datasets >= 1.18.0
+torch >= 1.5
+torchaudio
+transformers

@@ -5,6 +5,14 @@ from streamlit_extras.stateful_button import button
 import time
 from utils import upload_to_drive
 
+from transformers import (
+    AutoModelForCTC,
+    AutoProcessor
+)
+import datasets
+from datasets import load_dataset
+import torch
+
 
 add_page_title() 
 
@@ -16,11 +24,30 @@ st.markdown(
 )
 #https://drive.google.com/drive/folders/1bkxELyDOA98Ok5uZP3Q0yBoMFE4jy0q5?usp=share_link
 
+@st.cache_resource
+def load_model(model_name = "cawoylel/windanam_mms-1b-tts_v2"):
+  """
+  Function to load model from hugging face
+  """
+  processor = AutoProcessor.from_pretrained(model_name)
+  model = AutoModelForCTC.from_pretrained(model_name, cache_dir="./")
+  return model, processor
+
 # import asr function from pages/models
 st.cache_data()
-def transcribe_audio():
-    transcription = " This is a test for asr model"
-    return transcription
+def transcribe_audio(sample):
+  """
+  Transcribe audio
+  """
+  model, processor = load_model()
+  inputs = processor(sample, sampling_rate=16_000, return_tensors="pt")
+
+  with torch.no_grad():
+    outputs = model(**inputs).logits
+
+  ids = torch.argmax(outputs, dim=-1)[0]
+  transcription = processor.decode(ids)
+  return transcription
 
 def main():
     """
@@ -29,7 +56,7 @@ def main():
     wav_audio_data = st_audiorec()
     if wav_audio_data is not None:
         if button("Transcribe recording", key="transcribe"):
-            transcription = transcribe_audio()
+            transcription = transcribe_audio(wav_audio_data)
             with st.spinner("Model is loading"):
                 st.text_area(label = "Model Output", 
                              value=transcription, height =100)
