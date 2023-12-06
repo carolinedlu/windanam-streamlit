@@ -55,6 +55,7 @@ def main():
     """
     wav_audio_data = st_audiorec()
     if wav_audio_data is not None:
+        
         if button("Transcribe recording", key="transcribe"):
             transcription = transcribe_audio(wav_audio_data)
             with st.spinner("Model is loading"):
