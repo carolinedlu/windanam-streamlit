@@ -1,1 +1,0 @@
-#Script to download model from hugging face and save it

@@ -2,3 +2,7 @@ streamlit
 st-pages 
 streamlit-extras
 streamlit-audiorec
+google-api-python-client
+google-auth 
+google-auth-oauthlib 
+google-auth-httplib2 
