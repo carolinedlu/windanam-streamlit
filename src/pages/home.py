@@ -29,7 +29,7 @@ if st.session_state.language == "French":
             # Page("src/pages/translatation.py", "Translation", "🌐"),
         ]
     )
-    st.write("# 🇫🇷 Bienvenue sur Cawoylel-Demo! 👋")
+    st.write("# 🇫🇷 Bienvenue sur Cawoylel! 👋")
 
     st.markdown(
         """
