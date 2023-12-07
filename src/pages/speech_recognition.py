@@ -17,13 +17,13 @@ if "audio" not in st.session_state:
     st.session_state.audio = None
 
 st.session_state.mapping = {"French" : {"ressource_spinner" : "Téléchargement du modèle de reconnaisance vocale", 
-                                        "trancribe" : "Exécution du modèle. Cela peut prendre un certain temps", 
+                                        "transcribe" : "Exécution du modèle. Cela peut prendre un certain temps", 
                                         "fetching_output" : "Fetching output",
                                         "output_label" : "Sortie du modèle",
                                         "info_output" : "Pour nous aider à améliorer le modèle, vous pouvez cliquez sur le bouton ci-dessous afin de nous autoriser à utiliser vos enregistrements?",
                                         "authorize_button" : "Autoriser l'utilisation de mes enregistrements",
                                         "result_saved" : "Votre enregistrement a été bien pris en compte pour améliorer le modèle. Merci !",
-                                        "info_recording" : "Assurez-vous de vous être bien enregistré en cliquant sur le bouton Recording. Une fois enregistré, vous pourrez l'écouter. Attendez quelques secondes pour que le bouton Transcrire apparaisse. Cliquez dessus et attendez la sortie"
+                                        "info_recording" : "Assurez-vous de vous être bien enregistré en cliquant sur le bouton Start Recording. Une fois enregistré, vous pourrez l'écouter. Attendez quelques secondes pour que le bouton Transcrire apparaisse. Cliquez dessus et attendez la sortie"
                                         },
 
 "English" : {"ressource_spinner" : "Downloading model from Hugging Face...", 
@@ -33,7 +33,7 @@ st.session_state.mapping = {"French" : {"ressource_spinner" : "Téléchargement 
             "info_output" : "The results might not be perfect yet. In order to improve the model, would you allow us to use your recordings? If yes, click on the button below",
             "authorize_button" : "Allow my recordings to be used",
             "result_saved" : "Your recording has been saved to improve the model. Thanks a lot!",
-            "info_recording" : "Make sure you have recorded yourself by clicking on Start Recording button. Once recorded, you will be able to listen to the recording. Wait some seconds for the Transcribe button to appear. Click on it and wait for the output"
+            "info_recording" : "Make sure you have recorded yourself by clicking on Start Start Recording button. Once recorded, you will be able to listen to the recording. Wait some seconds for the Transcribe button to appear. Click on it and wait for the output"
             }
 }  
 if st.session_state.language == "French":

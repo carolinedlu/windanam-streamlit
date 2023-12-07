@@ -25,7 +25,7 @@ if st.session_state.language == "French":
     show_pages(
         [
             Page("src/pages/home.py", "Accueil", "🏠"),
-            Page("src/pages/speech_recognition.py", "Windanam", "🗣️"),
+            Page("src/pages/speech_recognition.py", "Windanam - Reconnaissance vocale", "🗣️"),
             # Page("src/pages/translatation.py", "Translation", "🌐"),
         ]
     )
