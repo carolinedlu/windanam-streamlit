@@ -10,21 +10,51 @@ from transformers import pipeline
 
 add_page_title() 
 
-st.markdown(
-    """
-    **Windanam** is Cawoylel's first multidialectal speech recognition model. 
-    As with all AI systems, there are inherent risks that the model coud mis-transcribe what a person wants to say, or generate inaccurate outputs.
-    We encourage you to test it and provides us some feedbacks on the model outputs.
-"""
-)
-
 if "transcription" not in st.session_state:
     st.session_state.transcription = None
 
 if "audio" not in st.session_state:
     st.session_state.audio = None
 
-@st.cache_resource(show_spinner="Downloading model from Hugging Face...")
+st.session_state.mapping = {"French" : {"ressource_spinner" : "Téléchargement du modèle de reconnaisance vocale", 
+                                        "trancribe" : "Exécution du modèle. Cela peut prendre un certain temps", 
+                                        "fetching_output" : "Fetching output",
+                                        "output_label" : "Sortie du modèle",
+                                        "info_output" : "Pour nous aider à améliorer le modèle, vous pouvez cliquez sur le bouton ci-dessous afin de nous autoriser à utiliser vos enregistrements?",
+                                        "authorize_button" : "Autoriser l'utilisation de mes enregistrements",
+                                        "result_saved" : "Votre enregistrement a été bien pris en compte pour améliorer le modèle. Merci !",
+                                        "info_recording" : "Assurez-vous de vous être bien enregistré en cliquant sur le bouton Recording. Une fois enregistré, vous pourrez l'écouter. Attendez quelques secondes pour que le bouton Transcrire apparaisse. Cliquez dessus et attendez la sortie"
+                                        },
+
+"English" : {"ressource_spinner" : "Downloading model from Hugging Face...", 
+            "transcribe":"Running model. This can take some some time",
+            "fetching_output" : "Récupération des résultats",
+            "output_label" : "Model Output",
+            "info_output" : "The results might not be perfect yet. In order to improve the model, would you allow us to use your recordings? If yes, click on the button below",
+            "authorize_button" : "Allow my recordings to be used",
+            "result_saved" : "Your recording has been saved to improve the model. Thanks a lot!",
+            "info_recording" : "Make sure you have recorded yourself by clicking on Start Recording button. Once recorded, you will be able to listen to the recording. Wait some seconds for the Transcribe button to appear. Click on it and wait for the output"
+            }
+}  
+if st.session_state.language == "French":
+  st.markdown(
+        """
+        **Windanam** est le premier modèle de reconnaissance vocale multidialectale de Cawoylel.
+        Comme tous les systèmes d'intelligence artificielle, il existe des risques que le modèle mal interprète ce que veut dire une personne ou produise des résultats inexacts.
+        Nous vous encourageons à le tester et à nous faire vos retours afin de l'améliorer.
+    """
+    )
+else: 
+  st.markdown(
+      """
+      **Windanam** is Cawoylel's first multidialectal speech recognition model. 
+      As with all AI systems, there are inherent risks that the model coud mis-transcribe what a person wants to say, or generate inaccurate outputs.
+      We encourage you to test it and provides us some feedbacks on the model outputs.
+  """
+  )
+
+
+@st.cache_resource(show_spinner=st.session_state.mapping[st.session_state.language]["ressource_spinner"])
 def load_model(model_name = "cawoylel/windanam_mms-1b-tts_v2"):
   """
   Function to load model from hugging face
@@ -34,7 +64,7 @@ def load_model(model_name = "cawoylel/windanam_mms-1b-tts_v2"):
 
 pipeline = load_model()
 
-st.cache_data(show_spinner="Running model. This can take some some time")
+st.cache_data(show_spinner=st.session_state.mapping[st.session_state.language]["transcribe"])
 def transcribe_audio(sample):
   """
   Transcribe audio
@@ -48,25 +78,23 @@ def main():
     """
     wav_audio_data = st_audiorec()
     if wav_audio_data is not None:
-      st.audio(wav_audio_data, format='audio/wav')
       st.session_state.audio = wav_audio_data
-      if button("Transcribe recording", key="transcribe"):
+      if button("Transcribe", key="transcribe"):
         st.session_state.transcription = transcribe_audio(st.session_state.audio)
-        with st.spinner("Fetching output"):
-            st.text_area(label = "Model Output", 
+        with st.spinner(st.session_state.mapping[st.session_state.language]["fetching_output"]):
+            st.text_area(label = st.session_state.mapping[st.session_state.language]["output_label"], 
                              value=st.session_state.transcription, height = 100)
                 
         with st.container():
-          st.info("The results might not be perfect yet. In order to improve the model, would you allow us to use your recordings?", icon="ℹ️") 
-          if button("Allow my recordings to be used", key="saved"):
+          st.info(st.session_state.mapping[st.session_state.language]["info_output"], icon="ℹ️") 
+          if button(st.session_state.mapping[st.session_state.language]["authorize_button"], key="saved"):
             upload_to_drive(wav_audio_data)
             #Display a message indicating successful upload
-            st.success(f"Your recording has been saved to improve the model. A jaaraama")
+            st.success(st.session_state.mapping[st.session_state.language]["result_saved"])
 
                 
     else:
-      st.info("Make sure you have recorded yourself by clicking on Start Recording button. Once recorded, you will be able to listen to the recording. Wait some seconds for the Transcribe button to appear. Click on it and wait for the output")
-      st.warning("The process might induce some latencies", icon="⚠️")   
+      st.info(st.session_state.mapping[st.session_state.language]["info_recording"])
 
 
 if __name__ == "__main__":
