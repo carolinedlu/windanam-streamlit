@@ -11,4 +11,3 @@ datasets >= 1.18.0
 torch >= 1.5
 torchaudio
 transformers
-ffmpeg-python
