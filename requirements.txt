@@ -10,4 +10,3 @@ oauth2client
 torch >= 1.5
 torchaudio
 transformers
-ffmpeg
